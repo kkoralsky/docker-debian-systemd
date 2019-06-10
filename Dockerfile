@@ -4,19 +4,16 @@ FROM debian:stretch
 ENV DEBIAN_FRONTEND noninteractive
 ENV container docker
 
-MAINTAINER Sebastian Krohn <seb@gaia.sunn.de>
-
 # add contrib, non-free and backports repositories
 ADD sources.list /etc/apt/sources.list
 # pin stable repositories
-ADD preferences /etc/apt/preferences
+# ADD preferences /etc/apt/preferences
 
 # clean out, update and install some base utilities
 RUN apt-get -y update && apt-get -y upgrade && apt-get clean && \
 	apt-get -y install apt-utils lsb-release curl git cron at logrotate rsyslog \
 		unattended-upgrades ssmtp lsof procps \
 		initscripts libsystemd0 libudev1 systemd sysvinit-utils udev util-linux && \
-	apt-get clean && \
 	sed -i '/imklog/{s/^/#/}' /etc/rsyslog.conf
 
 # set random root password
@@ -63,6 +60,7 @@ ADD configurator.service configurator_dumpenv.service /etc/systemd/system/
 RUN chmod 700 /root/configurator.sh /root/configurator_dumpenv.sh && \
 		systemctl enable configurator.service configurator_dumpenv.service
 
+RUN rm -f /etc/apt/apt.conf.d/docker-clean
+
 VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
 CMD ["/lib/systemd/systemd"]
-
