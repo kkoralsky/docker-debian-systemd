@@ -60,7 +60,9 @@ ADD configurator.service configurator_dumpenv.service /etc/systemd/system/
 RUN chmod 700 /root/configurator.sh /root/configurator_dumpenv.sh && \
 		systemctl enable configurator.service configurator_dumpenv.service
 
-RUN rm -f /etc/apt/apt.conf.d/docker-clean
+RUN rm -f /etc/apt/apt.conf.d/docker-clean && \
+  echo 'Binary::apt::APT::Keep-Downloaded-Packages "1";' > /etc/apt/apt.conf.d/90keep-downloaded
+
 
 VOLUME [ "/sys/fs/cgroup", "/run", "/run/lock", "/tmp" ]
 CMD ["/lib/systemd/systemd"]
