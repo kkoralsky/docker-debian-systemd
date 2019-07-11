@@ -10,20 +10,20 @@
 
 
 Package: *
-Pin: release n=stretch
+Pin: release n=buster
 Pin-Priority: 900
 
 Package: *
-Pin: release n=stretch-backports
+Pin: release n=buster-backports
 Pin-Priority: 900
 
 Package: *
-Pin: release n=stretch-updates
+Pin: release n=buster-updates
 Pin-Priority: 900
 
 
 Package: *
-Pin: release n=stretch-proposed-updates
+Pin: release n=buster-proposed-updates
 Pin-Priority: 700
 
 Package: *
