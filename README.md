@@ -21,5 +21,3 @@ If you need to change a configuration file based on docker environment variables
 
 * backports are enabled and pinned to be used.
 * cron, rsyslogd and atd are running, reconfigure or disable as required
-* unattended upgrades are enabled
-
