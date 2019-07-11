@@ -4,7 +4,8 @@ Debian container running systemd in unpriviledged mode
 
 start like this:
 ```
-docker run -d -t -i -v /sys/fs/cgroup:/sys/fs/cgroup:ro dramaturg/debian-systemd
+docker run -dv /sys/fs/cgroup:/sys/fs/cgroup:ro --name=debian-systemd kkoralsky/debian-systemd
+docker exec -it debian-systemd bash
 ```
 
 Or use supplied makefile.
