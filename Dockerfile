@@ -18,7 +18,6 @@ RUN cd /lib/systemd/system/sysinit.target.wants/ && \
 		ls | grep -v systemd-tmpfiles-setup.service | xargs rm -f && \
 		rm -f /lib/systemd/system/sockets.target.wants/*udev* && \
 		systemctl mask -- \
-			tmp.mount \
 			etc-hostname.mount \
 			etc-hosts.mount \
 			etc-resolv.conf.mount \
